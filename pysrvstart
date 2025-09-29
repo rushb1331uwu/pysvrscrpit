@@ -1,0 +1,18 @@
+SCRIPT_NAME="Run py sever.sh" 
+if ! which "$SCRIPT_NAME" &> /dev/null; then 
+echo =========================================
+echo Warning: This Script works better if its
+echo on path, please add it to path so that 
+echo you can get the best experience with it
+echo this will allow for runing it on any 
+echo directory that you run the command in.
+echo =========================================
+fi
+
+echo Starting python sever please await
+echo for stoping the sever press Ctrl+C at any time
+python3 -m http.server 8080
+echo Stopted the Sever Sucesufully 
+echo Press any key to continue
+read -n 1 -s
+echo 
