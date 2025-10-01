@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 SCRIPT_NAME="Run py sever.sh" 
 if ! which "$SCRIPT_NAME" &> /dev/null; then 
 echo =========================================

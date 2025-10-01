@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import os
 import shutil
+import stat
 import subprocess
 from pathlib import Path
 home = os.path.expanduser("~")
@@ -94,15 +95,15 @@ def main():
 if __name__ == "__main__":
     main()
 
+# First we check if its executable and warn the user if its not
+script_dir = os.path.dirname(os.path.abspath(__file__))
+script_path = os.path.join(script_dir, "pysrvstart")
+if not os.access(script_path, os.X_OK):
+    print(f"Script is not executable please run: chmod +x '{home}'/.local/bin/pysrvstart")
+
+# Then we make a directory for it: "fixes a bug where it wont be able to move the file to a nonexistent directory"
+os.makedirs(binfolder, exist_ok=True)
 
 # Adding to path part :D 
 shutil.copy("pysrvstart", os.path.join(binfolder, "pysrvstart"))
 shell = os.environ.get("SHELL", "")
-
-if "bash" in shell:
-    subprocess.run(["bash"])
-elif "zsh" in shell:
-    subprocess.run(["zsh"])
-else:
-    print("Cant find SHELL, so will use bash instead")
-    subprocess.run(["bash"])
